@@ -1,0 +1,21 @@
+{
+  "name": "mikitatestingauto",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "unit:test": "vitest",
+    "api:test": "playwright test tests/api_example.test.ts",
+    "ui:test": "playwright test tests/ui_example.test.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.48.2",
+    "@types/node": "^22.8.2",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.4"
+  }
+}
