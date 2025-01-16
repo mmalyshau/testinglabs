@@ -1,23 +1,25 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../src/pages/login.page';
-import {UserFactory} from "../src/pages/users/user.factory";
+import { UserFactory } from '../src/users/user.factory';
 
-test('Valid User Login', async ({ page }) => {
-    const loginPage = new LoginPage(page);
-    const user = UserFactory.getAdminUser();
+test.describe('Login Tests', () => {
+    test('Valid User Login', async ({ page }) => {
+        const loginPage = new LoginPage(page);
+        const user = UserFactory.getAdminUser();
+        await page.goto('https://www.saucedemo.com/');
+        await loginPage.login(user.username, user.password);
 
-    await page.goto('https://www.saucedemo.com/');
-    await loginPage.login(user.username, user.password);
+        const logoText = await page.textContent('.app_logo');
+        expect(logoText).toBe('Swag Labs');
+    });
 
-    expect(await page.textContent('.app_logo')).toBe('Swag Labs');
-});
+    test('Invalid User Login', async ({ page }) => {
+        const loginPage = new LoginPage(page);
+        const user = UserFactory.getInvalidUser();
+        await page.goto('https://www.saucedemo.com/');
+        await loginPage.login(user.username, user.password);
 
-test('Invalid User Login', async ({ page }) => {
-    const loginPage = new LoginPage(page);
-    const user = UserFactory.getInvalidUser();
-
-    await page.goto('https://www.saucedemo.com/');
-    await loginPage.login(user.username, user.password);
-
-    expect(await page.isVisible('[data-test="error"]')).toBe(true);
+        const errorText = await page.textContent('[data-test="error"]');
+        expect(errorText).toBe('Epic sadface: Username and password do not match any user in this service');
+    });
 });
