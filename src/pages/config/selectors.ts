@@ -1,0 +1,17 @@
+export const selectors = {
+    usernameInput: '#user-name',
+    passwordInput: '#password',
+    loginButton: '#login-button',
+    appLogo: '.app_logo',
+    addToCartButton: '[data-test="add-to-cart-sauce-labs-backpack"]',
+    bikeLightAddToCartButton: '[data-test="add-to-cart-sauce-labs-bike-light"]',
+    cartButton: '.shopping_cart_link',
+    checkoutButton: '#checkout',
+    firstNameInput: '#first-name',
+    lastNameInput: '#last-name',
+    postalCodeInput: '#postal-code',
+    continueButton: '#continue',
+    summaryTotal: '.summary_total_label',
+    finishButton: '#finish',
+    completeOrderHeader: '.complete-header',
+};
